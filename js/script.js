@@ -44,6 +44,10 @@ play.addEventListener("click", function () {
     getGrid(sectionEl, cellNumber, className);
 
 })
+// 5 creo un eventListener sul article che rappresenta le celle;
+
+
+
 
 // funzone griglia 
 function getGrid(containerEl, cells, addNewClass) {
@@ -60,6 +64,7 @@ function getGrid(containerEl, cells, addNewClass) {
     
         // article figlio di section;
         sectionEl.appendChild(articleEl);
+        let bombs = getRandomNumber
         
         // aggiungo addEvenentListener (click);
         articleEl.addEventListener("click", function () {
@@ -75,17 +80,35 @@ function getGrid(containerEl, cells, addNewClass) {
 function getRandomNumber(cells) {
     // 1 creo un array bombe vuoto; 
     let bombe = [];
-    let n = 0;
-    while (n < 16) {
-        const randomBomb = Number.Math.floor(Math.random() * cells) + 1;
-        // 3 Per far si che non si ripeta un numero nel array delle bombe uso un if al interno del ciclo while,
-        // se il numero generato è già presente nel array genero un'altro numero;
-        if (randomBomb === bombe[]) {
-            
+    while (bombe.length < 16) {
+        const randomBomb = Math.floor(Math.random() * cells) + 1;
+
+        if (arrayIncludes(bombe, randomBomb) === false) {
+            // 4 una volta che ho il numero lo pusho nel array bombe;
+            bombe.push(randomBomb);
         }
-        n += 1;
+    }
+    return bombe;
+}
+
+        // 3 Per far si che non si ripeta un numero nel array delle bombe uso un if al interno del ciclo while.
+function arrayIncludes(array, value) {
+    let n = 0;
+    let uguaglianza = false;
+    while (n < array.length) {
+        if (array[n] === value) {
+            uguaglianza = true;
+        }
+        n += 1; 
+    }
+    if (uguaglianza) {
+        return true;
+    } else{
+        return false;
     }
 }
+
+console.log(getRandomNumber(100))
 
 
 
