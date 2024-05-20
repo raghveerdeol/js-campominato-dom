@@ -18,6 +18,8 @@
 const sectionEl = document.querySelector('section#container');
 const play = document.querySelector('button#play');
 const selectEl = document.getElementById("difficoltà");
+let punteggio = document.querySelector("main > h2");
+
 // creato tasto play che genera la griglia al click;
 play.addEventListener("click", function () {
     console.log(selectEl.value);
@@ -41,7 +43,7 @@ play.addEventListener("click", function () {
             className = "difficoltà-facile"
             break;
     }
-    getGrid(sectionEl, cellNumber, className);
+    getGrid(sectionEl, cellNumber, className, punteggio);
 
 })
 // 5 creo un eventListener sul article che rappresenta le celle;
@@ -50,8 +52,9 @@ play.addEventListener("click", function () {
 
 
 // funzone griglia 
-function getGrid(containerEl, cells, addNewClass) {
+function getGrid(containerEl, cells, addNewClass, points) {
     containerEl.innerHTML = "";
+    let score = 0;
     let n = 0;
     let bombs = getRandomNumber(cells);
     console.log(bombs)
@@ -74,9 +77,12 @@ function getGrid(containerEl, cells, addNewClass) {
             let presenzaBomba = checkNumber(bombs, articleEl.innerHTML);
             console.log(presenzaBomba)
             if (presenzaBomba === true) {
-                articleEl.classList.add('bomba')
+                articleEl.classList.add('bomba');
             } else{
                 articleEl.classList.add('attiva');
+                score = score + 1;
+                points.innerHTML = "Il tuo punteggio è :" + " " +score;
+                console.log(score);
             }
             console.log(articleEl.innerHTML);
         });
