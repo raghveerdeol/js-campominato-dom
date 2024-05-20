@@ -50,3 +50,6 @@ section#container{
     width: calc(100% / 7);
 
 }
+.bomba{
+    background-color: red;
+}
