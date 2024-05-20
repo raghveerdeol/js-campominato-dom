@@ -53,6 +53,8 @@ play.addEventListener("click", function () {
 function getGrid(containerEl, cells, addNewClass) {
     containerEl.innerHTML = "";
     let n = 0;
+    let bombs = getRandomNumber(cells);
+    console.log(bombs)
     while (n < cells) {
         // creo l'elemento article;
         let articleEl = document.createElement("article");
@@ -64,15 +66,40 @@ function getGrid(containerEl, cells, addNewClass) {
     
         // article figlio di section;
         sectionEl.appendChild(articleEl);
-        let bombs = getRandomNumber
+
+        console.log(articleEl.innerHTML)
         
         // aggiungo addEvenentListener (click);
         articleEl.addEventListener("click", function () {
-            articleEl.classList.add('attiva');
+            let presenzaBomba = checkNumber(bombs, articleEl.innerHTML);
+            console.log(presenzaBomba)
+            if (presenzaBomba === true) {
+                articleEl.classList.add('bomba')
+            } else{
+                articleEl.classList.add('attiva');
+            }
             console.log(articleEl.innerHTML);
         });
         
         n += 1;
+    }
+}
+
+// creo un un ciclo while < bomba.length al interno del quale uso if 
+// per vedere se il numero della cella è uguale a un numero presente nel array bomba,
+function checkNumber(array, casella) {
+    let n = 0;
+    let uguaglianza;
+    while (n < array.length) {
+        if (array[n] == casella) {
+            uguaglianza = true;
+        }
+        n += 1;
+    }
+    if (uguaglianza) {
+        return true;
+    } else {
+        return false;
     }
 }
 // 2 per generare i numeri casuali creo una funzione con il parametro celle, 
@@ -108,7 +135,7 @@ function arrayIncludes(array, value) {
     }
 }
 
-console.log(getRandomNumber(100))
+
 
 
 
