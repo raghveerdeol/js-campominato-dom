@@ -54,8 +54,8 @@ play.addEventListener("click", function () {
 // funzone griglia 
 function getGrid(containerEl, cells, addNewClass, points) {
     containerEl.innerHTML = "";
-    let score = 0;
     let n = 0;
+    let score = 0;
     let bombs = getRandomNumber(cells);
     console.log(bombs)
     while (n < cells) {
@@ -75,14 +75,17 @@ function getGrid(containerEl, cells, addNewClass, points) {
         // aggiungo addEvenentListener (click);
         articleEl.addEventListener("click", function () {
             let presenzaBomba = checkNumber(bombs, articleEl.innerHTML);
+;
             console.log(presenzaBomba)
             if (presenzaBomba === true) {
                 articleEl.classList.add('bomba');
+                alert("GAME OVER!!!! LOSER!!!");
+                return true;
             } else{
                 articleEl.classList.add('attiva');
                 score = score + 1;
-                points.innerHTML = "Il tuo punteggio è :" + " " +score;
                 console.log(score);
+                points.innerHTML = "Il tuo punteggio è :" + " " +score;
             }
             console.log(articleEl.innerHTML);
         });
